@@ -1,7 +1,9 @@
-#include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
+#include <iostream> //
+#include <SDL2/SDL.h> //
+#include <SDL2/SDL_image.h> //
+#include <stdexcept> //
+#include <string> //
+
 
 const int SCREEN_WIDTH = 600;
 const int SCREEN_HEIGHT = 600;
