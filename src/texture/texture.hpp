@@ -1,17 +1,33 @@
 #pragma once
 
+#include "SDL_render.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+
+namespace Wrapper {
+    
 //Texture wrapper class
 class MyTexture {
 private:
     //The actual hardware texture
     SDL_Texture* texture;
 
-    //Image dimensions
+    //initial image dimensions
     int width;
     int height;
+
+    void free() {
+        if (this->texture != NULL) {
+            SDL_DestroyTexture(this->texture);
+            this->texture = NULL;
+            this->width = 0;
+            this->height = 0;
+        }
+    }
 public:
     //Initializes variables
-    MyTexture();
+    MyTexture(const char* img_path);
 
     //Deallocates memory
     ~MyTexture();
@@ -26,9 +42,6 @@ public:
     void set_blend_mode(SDL_BlendMode blending);
     void set_alpha(uint8_t alpha);
 
-    //Deallocates texture
-    void free();
-
     //Renders texture at given point
     void render( int x, int y, SDL_Rect* clip = NULL );
 
@@ -37,3 +50,4 @@ public:
     int get_height();
 };
 
+}
