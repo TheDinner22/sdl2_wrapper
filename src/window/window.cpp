@@ -16,13 +16,7 @@ void print_img_error(const char* msg) {
     std::cout << msg << IMG_GetError() << std::endl;
 }
 
-Window::Window(
-    const char* window_name,
-    int screen_width,
-    int screen_height,
-    unsigned int flags
-)
-{
+void init_sdl_and_libs(unsigned int flags){
     // init SDL
     bool success = SDL_Init( flags ) == 0;
     if (!success) {
@@ -37,6 +31,16 @@ Window::Window(
         print_img_error("SDL_image could not initialize: ");
         throw std::runtime_error("SDL_image could not initialize");
     }
+}
+
+Window::Window(
+    const char* window_name,
+    int screen_width,
+    int screen_height,
+    unsigned int flags
+)
+{
+    init_sdl_and_libs(flags);
 
     //Create window
     window = SDL_CreateWindow( 
@@ -52,12 +56,21 @@ Window::Window(
         print_sdl_error("could not create window: ");
         throw std::runtime_error("could not create window");
     }
-
     window_surface = SDL_GetWindowSurface(window);
+
+    // create renderer
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
+    if (this->renderer == NULL) {
+        print_sdl_error("could not create renderer");
+    }
+    // set renderer color
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255); 
 }
 
 Window::~Window(){
     SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(this->renderer);
+
     IMG_Quit();
     SDL_Quit();
 }
