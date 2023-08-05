@@ -92,6 +92,7 @@ SDL_Surface* Window::load_surface(const char* path) const {
         std::string err_msg ="unable to optimze surface with path: "; 
         err_msg += path;
         print_sdl_error(err_msg.data());
+        throw std::runtime_error(err_msg.data());
     }
 
     SDL_FreeSurface(loaded_surface);

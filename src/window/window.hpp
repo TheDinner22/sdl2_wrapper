@@ -9,12 +9,13 @@ void print_sdl_error(const char* msg);
 
 void print_sdl_img_error(const char* msg);
 
+// acts as a factort for Textures
 class Window {
 private:
     SDL_Window* window;
     SDL_Surface* window_surface;
 
-    SDL_Renderer* renderer = NULL;
+    SDL_Renderer* renderer;
 public:
     Window(const Window& other) = delete;
     Window& operator=(const Window& other) = delete;
@@ -31,7 +32,7 @@ public:
     ~Window();
 
     // you are responsible for this pointer!
-    // TODO surface class
+    // TODO surface class TODO this method cannot be public
     SDL_Surface* load_surface(const char* path) const;
 };
 

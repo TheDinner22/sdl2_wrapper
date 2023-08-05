@@ -11,12 +11,23 @@ namespace Wrapper {
 //Texture wrapper class
 class MyTexture {
 private:
+    friend class Window;
+
     //The actual hardware texture
     SDL_Texture* texture;
 
     //initial image dimensions
     int width;
     int height;
+
+    // info about the window and render from the generator
+    SDL_Window* window;
+    SDL_Surface* window_surface;
+    SDL_Renderer* renderer;
+
+    // huge TODO impl this here and then make the window class a generator for this class or do something with this
+    // https://stackoverflow.com/questions/28334485/do-c-private-functions-really-need-to-be-in-the-header-file
+    MyTexture(const char* img_path, SDL_Window* window, SDL_Surface* window_surface, SDL_Renderer* renderer);
 
     void free() {
         if (this->texture != NULL) {
@@ -27,16 +38,13 @@ private:
         }
     }
 public:
+    // cannot make or copy this class
+    MyTexture() = delete;
     MyTexture(const MyTexture& other) = delete;
     MyTexture& operator=(const MyTexture& other) = delete;
 
-    //Initializes variables
-    MyTexture(const char* img_path, const Window& window);
-
-    //Deallocates memory
     ~MyTexture();
 
-    //Loads image at specified path
     bool load_from_file( const char* path );
 
     // set color modulation
@@ -46,10 +54,8 @@ public:
     void set_blend_mode(SDL_BlendMode blending);
     void set_alpha(uint8_t alpha);
 
-    //Renders texture at given point
     void render( int x, int y, SDL_Rect* clip = NULL );
 
-    //Gets image dimensions
     int get_width();
     int get_height();
 };
