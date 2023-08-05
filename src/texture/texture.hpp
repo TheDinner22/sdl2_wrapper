@@ -1,8 +1,9 @@
 #pragma once
 
-#include "SDL_render.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
+#include "window/window.hpp"
 
 
 namespace Wrapper {
@@ -26,8 +27,11 @@ private:
         }
     }
 public:
+    MyTexture(const MyTexture& other) = delete;
+    MyTexture& operator=(const MyTexture& other) = delete;
+
     //Initializes variables
-    MyTexture(const char* img_path);
+    MyTexture(const char* img_path, const Window& window);
 
     //Deallocates memory
     ~MyTexture();
