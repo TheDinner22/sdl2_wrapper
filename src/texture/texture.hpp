@@ -61,8 +61,8 @@ private:
 public:
     // TODO uncomment these and fix?
     // cannot make or copy this class
-    // MyTexture(const MyTexture& other) = delete;
-    // MyTexture& operator=(const MyTexture& other) = delete;
+    MyTexture(const MyTexture& other) = delete;
+    MyTexture& operator=(const MyTexture& other) = delete;
 
     ~MyTexture();
 

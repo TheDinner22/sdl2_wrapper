@@ -45,6 +45,9 @@ private:
     }
 public:
     // haha no copying this class
+    // TODO either implement these or the move 
+    // constructor and assignmet operators 
+    // and the code should work!
     Window(const Window& other) = delete;
     Window& operator=(const Window& other) = delete;
 
