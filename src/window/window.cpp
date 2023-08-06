@@ -8,11 +8,11 @@
 #include "window.hpp" //
 
 void print_sdl_error(const char* msg) {
-    std::cout << msg << SDL_GetError() << std::endl;
+    std::cout << msg << std::endl << SDL_GetError() << std::endl << std::endl;
 }
 
 void print_sdl_img_error(const char* msg) {
-    std::cout << msg << IMG_GetError() << std::endl;
+    std::cout << msg << std::endl << IMG_GetError() << std::endl << std::endl;
 }
 
 void init_sdl_and_libs(unsigned int flags){

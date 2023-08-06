@@ -21,8 +21,25 @@ void MyTexture::set_alpha(uint8_t alpha){
     SDL_SetTextureAlphaMod(this->texture, alpha);
 }
 
-void MyTexture::render( int x, int y, SDL_Rect* clip){}
+void MyTexture::render( int x, int y, SDL_Rect* clip) const {
+    SDL_Rect render_quad = {x, y, this->width, this->height};
 
-int MyTexture::get_width(){}
-int MyTexture::get_height(){}
+    // TODO make it so i can render to entire screen if i want
+    // just me but i prefer the image fit the screen
+    // this code is not part of tutorial
+    // render_quad.w = SCREEN_WIDTH;
+    // render_quad.h = SCREEN_HEIGHT;
+
+    // if there is a clip apply it
+    if (clip != NULL) {
+        render_quad.w = clip->w;
+        render_quad.h = clip->h;
+    }
+
+    // render to screen
+    SDL_RenderCopy(renderer, this->texture, clip, &render_quad);
+}
+
+int MyTexture::get_width(){ return this->width; }
+int MyTexture::get_height(){ return this->height; }
 

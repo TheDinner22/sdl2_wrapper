@@ -4,6 +4,7 @@
 -ggdb
 -MMD
 -MP
+-c
 -Iinclude
 -Isrc
 -Isrc/texture

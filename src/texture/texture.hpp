@@ -1,13 +1,11 @@
 #pragma once
 
 // forward declarations
-class MyTexture;
+class Window;
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdexcept>
-
-#include "window/window.hpp"
 
 //Texture wrapper class
 class MyTexture {
@@ -75,7 +73,7 @@ public:
     void set_blend_mode(SDL_BlendMode blending);
     void set_alpha(uint8_t alpha);
 
-    void render( int x, int y, SDL_Rect* clip = NULL );
+    void render(int x, int y, SDL_Rect* clip = NULL) const;
 
     int get_width();
     int get_height();

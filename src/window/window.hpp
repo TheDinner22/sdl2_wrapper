@@ -2,8 +2,8 @@
 
 #include <SDL2/SDL.h> //
 #include <SDL2/SDL_image.h> //
-#include <string>
-#include <stdexcept>
+#include <string> //
+#include <stdexcept> //
 
 #include "texture/texture.hpp" //
 
