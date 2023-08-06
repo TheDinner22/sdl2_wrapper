@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main() {
-    Wrapper::Window win("test window", 650, 650);
+    Window win("test window", 650, 650);
 
     // just to make the program not insta die
     int a;

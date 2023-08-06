@@ -6,11 +6,7 @@
 #include "texture.hpp"
 #include "window/window.hpp"
 
-namespace Wrapper {
-
 MyTexture::~MyTexture() {}
-
-bool MyTexture::load_from_file( const char* path ){}
 
 // set color modulation
 void MyTexture::set_color(uint8_t red, uint8_t green, uint8_t blue){}
@@ -24,4 +20,3 @@ void MyTexture::render( int x, int y, SDL_Rect* clip){}
 int MyTexture::get_width(){}
 int MyTexture::get_height(){}
 
-}

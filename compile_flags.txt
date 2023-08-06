@@ -1,0 +1,6 @@
+-Iinclude
+-Isrc
+-Llib
+-lSDL2
+
+-I/usr/include/SDL2

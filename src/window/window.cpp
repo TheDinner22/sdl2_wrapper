@@ -4,9 +4,8 @@
 #include <stdexcept> //
 #include <string> //
 
+#include "texture/texture.hpp"
 #include "window.hpp" //
-
-namespace Wrapper {
 
 void print_sdl_error(const char* msg) {
     std::cout << msg << SDL_GetError() << std::endl;
@@ -75,29 +74,23 @@ Window::~Window(){
     SDL_Quit();
 }
 
-SDL_Surface* Window::load_surface(const char* path) const {
-    // final optimized image
-    SDL_Surface* optimized_surface = NULL;
+MyTexture Window::load_texture_from_file(const char* img_path) const {
+    // TODO surface class?
+    // load surface
+    SDL_Surface* loaded_surface = this->load_surface(img_path);
+    if (loaded_surface == NULL) {}
 
-    SDL_Surface* loaded_surface = IMG_Load( path );
-    if (loaded_surface == NULL) {
-        std::string err_msg = "could not load image with path: ";
-        err_msg += path;
-        print_sdl_img_error(err_msg.data());
-        throw std::runtime_error(err_msg.data());
-    }
-
-    optimized_surface = SDL_ConvertSurface(loaded_surface, this->window_surface->format, 0);
-    if (optimized_surface == NULL) {
-        std::string err_msg ="unable to optimze surface with path: "; 
-        err_msg += path;
-        print_sdl_error(err_msg.data());
-        throw std::runtime_error(err_msg.data());
-    }
-
+    MyTexture new_texture(
+        img_path,
+        loaded_surface,
+        this->window,
+        this->window_surface,
+        this->renderer
+    );
+    
+    // free surface
     SDL_FreeSurface(loaded_surface);
 
-    return optimized_surface;
+    return new_texture;
 }
 
-}
