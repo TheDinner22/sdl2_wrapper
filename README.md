@@ -3,6 +3,10 @@
 classes and functions to make working with
 SDL2 (written in C) easier when using SDL2 in C++.
 
+## i am sorry
+
+this code is dog shit i have decided
+
 ## tutorial
 
 I learned most of what I know about SDL2 from:
