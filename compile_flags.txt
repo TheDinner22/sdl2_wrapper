@@ -1,6 +1,15 @@
+-Wall
+-Wextra
+-std=c++17
+-ggdb
+-MMD
+-MP
 -Iinclude
 -Isrc
+-Isrc/texture
+-Isrc/window
 -Llib
 -lSDL2
+-lSDL2_image
 
 -I/usr/include/SDL2
