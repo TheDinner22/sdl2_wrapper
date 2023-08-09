@@ -86,13 +86,14 @@ MyTexture Window::load_texture_from_file(const char* img_path, std::optional<RBG
     return new_texture;
 }
 
-void Window::update_screen() const {
+void Window::update_screen(std::optional<RBGColor> bg_color) const {
     // print to screen
     SDL_RenderPresent(this->renderer);
 
+    RBGColor color = bg_color.value_or(RBGColor::defaultt());
+
     // clear screen
-    // TODO make bg color custom
-    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(this->renderer, color.r, color.b, color.g, 255);
     SDL_RenderClear(this->renderer);
 }
 

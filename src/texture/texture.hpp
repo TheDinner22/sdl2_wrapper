@@ -12,8 +12,14 @@ class Window;
 class RBGColor {
 public:
     uint8_t r = 0;
-    uint8_t g = 0;
     uint8_t b = 0;
+    uint8_t g = 0;
+
+    // default was taken :p
+    static RBGColor defaultt() {
+        RBGColor color = {255, 255, 255};
+        return color;
+    }
 };
 
 //Texture wrapper class

@@ -34,6 +34,6 @@ public:
 
     MyTexture load_texture_from_file(const char* img_path, std::optional<RBGColor> = std::nullopt) const;
 
-    void update_screen() const;
+    void update_screen(std::optional<RBGColor> bg_color = std::nullopt) const;
 };
 
