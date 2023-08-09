@@ -43,9 +43,9 @@ void MyTexture::render( int x, int y, SDL_Rect* clip) const {
 
 // move constructor
 MyTexture::MyTexture(MyTexture&& rhs) :
-    texture(rhs.texture),
     width(rhs.width),
     height(rhs.height),
+    texture(rhs.texture),
     window(rhs.window),
     window_surface(rhs.window_surface),
     renderer(rhs.renderer)
