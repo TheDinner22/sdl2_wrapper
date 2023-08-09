@@ -20,7 +20,7 @@ private:
 
     // info about the window and render from the generator
     SDL_Window* window;
-    SDL_Surface* window_surface;
+    SDL_Surface* window_surface; // TODO remove this member (we dont need it)
     SDL_Renderer* renderer;
 
     // huge TODO impl this here and then make the window class a generator for this class or do something with this
@@ -71,7 +71,7 @@ public:
 
     // move stuff
     MyTexture(MyTexture&& rhs);
-    MyTexture& operator=(MyTexture&& rhs);
+    MyTexture& operator=(MyTexture&& rhs) = delete;
 
     ~MyTexture();
 

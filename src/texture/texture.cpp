@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdexcept>
+#include <iostream>
 #include <string>
 
 #include "texture.hpp"
@@ -64,7 +65,7 @@ MyTexture::MyTexture(MyTexture&& rhs) :
 // am operating on pure guesswork
 // the cpp reference is more confusing than the 
 // enigma codes
-// TODO implement this and test the move constructor
+/*
 MyTexture& MyTexture::operator=(MyTexture&& rhs) {
     this->free();
 
@@ -84,4 +85,5 @@ MyTexture& MyTexture::operator=(MyTexture&& rhs) {
 
     return *this;
 }
+*/
 

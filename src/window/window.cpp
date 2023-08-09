@@ -77,8 +77,10 @@ Window::~Window(){
 MyTexture Window::load_texture_from_file(const char* img_path) const {
     // TODO surface class?
     // load surface
-    SDL_Surface* loaded_surface = this->load_surface(img_path);
-    if (loaded_surface == NULL) {}
+    SDL_Surface* loaded_surface = this->load_unoptimized_surface(img_path);
+    if (loaded_surface == NULL) {
+        std::cout << "unreachable" << std::endl;
+    }
 
     MyTexture new_texture(
         img_path,

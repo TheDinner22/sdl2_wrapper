@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h> //
 #include <string> //
 #include <stdexcept> //
+#include <iostream>
 
 #include "texture/texture.hpp" //
 
@@ -19,10 +20,7 @@ private:
     SDL_Renderer* renderer;
     //
     // you are responsible for this pointer!
-    SDL_Surface* load_surface(const char* path) const {
-        // final optimized image
-        SDL_Surface* optimized_surface = NULL;
-
+    SDL_Surface* load_unoptimized_surface(const char* path) const {
         SDL_Surface* loaded_surface = IMG_Load( path );
         if (loaded_surface == NULL) {
             std::string err_msg = "could not load image with path: ";
@@ -31,17 +29,7 @@ private:
             throw std::runtime_error(err_msg.data());
         }
 
-        optimized_surface = SDL_ConvertSurface(loaded_surface, this->window_surface->format, 0);
-        if (optimized_surface == NULL) {
-            std::string err_msg ="unable to optimze surface with path: "; 
-            err_msg += path;
-            print_sdl_error(err_msg.data());
-            throw std::runtime_error(err_msg.data());
-        }
-
-        SDL_FreeSurface(loaded_surface);
-
-        return optimized_surface;
+        return loaded_surface;
     }
 public:
     // haha no copying this class
