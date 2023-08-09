@@ -9,6 +9,7 @@
 // maybe a class that has a texture which is 
 // aware of "where it is" or something
 // move the error stuff to another file
+// sdl uses RGB
 
 void alpha_mod_test(const Window& win){
     MyTexture t = win.load_texture_from_file("images/wed.png");
@@ -57,6 +58,20 @@ void bg_color_test (const Window& win) {
     std::cin >> b;
 }
 
+void color_mod_test (const Window& win) {
+    uint8_t b = 255;
+    MyTexture bg = win.load_texture_from_file("images/background.png");
+
+    while(true){
+        bg.set_color(255, 255, b);
+        bg.render(0, 0);
+        win.update_screen();
+        b--;
+        if (b == 0) {break;}
+    }
+
+}
+
 int main() {
     const int SCREEN_WIDTH = 650;
     const int SCREEN_HEIGHT = 650;
@@ -67,4 +82,6 @@ int main() {
     color_key_test(win);
 
     bg_color_test(win);
+
+    color_mod_test(win);
 }
