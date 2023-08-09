@@ -50,6 +50,7 @@ Window::Window(
         screen_height,
         SDL_WINDOW_SHOWN
     );
+
     if( window == NULL )
     {
         print_sdl_error("could not create window: ");

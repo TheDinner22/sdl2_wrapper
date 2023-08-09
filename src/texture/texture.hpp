@@ -19,11 +19,12 @@ private:
 
     SDL_Texture* texture;
 
-    // info about the window and render from the generator
+    // info about the window and render
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    // https://stackoverflow.com/questions/28334485/do-c-private-functions-really-need-to-be-in-the-header-file
+    // cannot make this class directly 
+    // call the method on the window class
     MyTexture(const char* img_path, SDL_Window* window, SDL_Renderer* renderer) 
     : window(window), renderer(renderer)
     {
@@ -50,11 +51,11 @@ private:
             throw std::runtime_error(err_msg.data());
         }
 
-        // free surface
-        SDL_FreeSurface(loaded_surface);
-
         this->width = loaded_surface->w;
         this->height = loaded_surface->h;
+
+        // free surface
+        SDL_FreeSurface(loaded_surface);
     }
 
     // you are responsible for this pointer!
