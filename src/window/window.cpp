@@ -1,6 +1,7 @@
 #include <iostream> //
 #include <SDL2/SDL.h> //
 #include <SDL2/SDL_image.h> //
+#include <optional>
 #include <stdexcept> //
 #include <string> //
 
@@ -74,11 +75,12 @@ Window::~Window(){
     SDL_Quit();
 }
 
-MyTexture Window::load_texture_from_file(const char* img_path) const {
+MyTexture Window::load_texture_from_file(const char* img_path, std::optional<RBGColor> color_key_color) const {
     MyTexture new_texture(
         img_path,
         this->window,
-        this->renderer
+        this->renderer,
+        color_key_color
     );
     
     return new_texture;
