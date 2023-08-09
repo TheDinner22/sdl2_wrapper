@@ -16,19 +16,6 @@ class Window {
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
-    //
-    // you are responsible for this pointer!
-    SDL_Surface* load_unoptimized_surface(const char* path) const {
-        SDL_Surface* loaded_surface = IMG_Load( path );
-        if (loaded_surface == NULL) {
-            std::string err_msg = "could not load image with path: ";
-            err_msg += path;
-            print_sdl_img_error(err_msg.data());
-            throw std::runtime_error(err_msg.data());
-        }
-
-        return loaded_surface;
-    }
 public:
     // haha no copying this class
     Window(const Window& other) = delete;
