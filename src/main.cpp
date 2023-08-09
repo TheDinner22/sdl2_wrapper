@@ -3,6 +3,14 @@
 
 #include <iostream>
 
+// add color keying
+// add better rendering (x, y, w, h)
+// you can move textures?
+// events?
+// maybe a class that has a texture which is 
+// aware of "where it is" or something
+// move the error stuff to another file
+
 int main() {
     const int SCREEN_WIDTH = 650;
     const int SCREEN_HEIGHT = 650;
