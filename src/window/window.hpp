@@ -49,6 +49,6 @@ public:
 
     MyTexture load_texture_from_file(const char* img_path) const;
 
-    void update_screen(); // TODO
+    void update_screen() const;
 };
 

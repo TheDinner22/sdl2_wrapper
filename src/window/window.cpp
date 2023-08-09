@@ -4,6 +4,7 @@
 #include <stdexcept> //
 #include <string> //
 
+#include "SDL_render.h"
 #include "texture/texture.hpp"
 #include "window.hpp" //
 
@@ -94,5 +95,15 @@ MyTexture Window::load_texture_from_file(const char* img_path) const {
     SDL_FreeSurface(loaded_surface);
 
     return new_texture;
+}
+
+void Window::update_screen() const {
+    // print to screen
+    SDL_RenderPresent(this->renderer);
+
+    // clear screen
+    // TODO make bg color custom
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
+    SDL_RenderClear(this->renderer);
 }
 
