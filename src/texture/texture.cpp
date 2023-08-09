@@ -18,6 +18,11 @@ void MyTexture::set_color(uint8_t red, uint8_t green, uint8_t blue){
 void MyTexture::set_blend_mode(SDL_BlendMode blending){
     SDL_SetTextureBlendMode(this->texture, blending);
 }
+
+void MyTexture::enable_alpha_modulation(){
+    this->set_blend_mode(SDL_BLENDMODE_BLEND);
+}
+
 void MyTexture::set_alpha(uint8_t alpha){
     SDL_SetTextureAlphaMod(this->texture, alpha);
 }
