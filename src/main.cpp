@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-// add color keying
 // add better rendering (x, y, w, h)
 // you can move textures?
 // events?

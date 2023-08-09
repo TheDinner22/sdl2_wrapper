@@ -7,6 +7,14 @@ class Window;
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <stdexcept>
+#include <optional>
+
+class RBGColor {
+public:
+    uint8_t r = 0;
+    uint8_t g = 0;
+    uint8_t b = 0;
+};
 
 //Texture wrapper class
 class MyTexture {
@@ -25,20 +33,25 @@ private:
 
     // cannot make this class directly 
     // call the method on the window class
-    MyTexture(const char* img_path, SDL_Window* window, SDL_Renderer* renderer) 
+    MyTexture(const char* img_path, SDL_Window* window, SDL_Renderer* renderer, std::optional<RBGColor> color_key_color = std::nullopt) 
     : window(window), renderer(renderer)
     {
-        // TODO add color keying later
-        // color key image
-        // pass the surface to color key, the second are is whether or not to enable
-        // color keying, and the third is the pixel we want to color key with
-        // SDL_MapRGB lets us create a pixel from a color and format these values map to cyan pixels
-        // SDL_SetColorKey(loaded_surface, SDL_TRUE, SDL_MapRGB(loaded_surface->format, 0, 255, 255) );
-
         // load the surface
         SDL_Surface* loaded_surface = this->load_unoptimized_surface(img_path);
         if (loaded_surface == NULL) {
             std::cout << "unreachable" << std::endl;
+        }
+
+        // color key image
+        // pass the surface to color key, the second arg is whether or not to enable
+        // color keying, and the third is the pixel we want to color key with
+        // SDL_MapRGB lets us create a pixel from a color and format these values map to cyan pixels
+        if(color_key_color.has_value()) {
+            SDL_SetColorKey(
+                loaded_surface,
+                SDL_TRUE,
+                SDL_MapRGB(loaded_surface->format, color_key_color->r, color_key_color->b, color_key_color->g)
+            );
         }
 
         // convert into texture
