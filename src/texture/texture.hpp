@@ -9,14 +9,14 @@ class Window;
 
 //Texture wrapper class
 class MyTexture {
+public:
+    // starts as initial image dimensions
+    int width;
+    int height;
 private:
     friend class Window;
 
     SDL_Texture* texture;
-
-    //initial image dimensions
-    int width;
-    int height;
 
     // info about the window and render from the generator
     SDL_Window* window;
@@ -82,8 +82,5 @@ public:
     void set_alpha(uint8_t alpha);
 
     void render(int x, int y, SDL_Rect* clip = NULL) const;
-
-    int get_width();
-    int get_height();
 };
 

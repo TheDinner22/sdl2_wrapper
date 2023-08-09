@@ -11,7 +11,9 @@ int main() {
 
     MyTexture t = win.load_texture_from_file("images/wed.png");
 
-    // t.render(SCREEN_WIDTH, SCREEN_HEIGHT);
+    t.render(0, 0);
+
+    win.update_screen();
 
     // just to make the program not insta die
     int a;

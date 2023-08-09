@@ -41,9 +41,6 @@ void MyTexture::render( int x, int y, SDL_Rect* clip) const {
     SDL_RenderCopy(renderer, this->texture, clip, &render_quad);
 }
 
-int MyTexture::get_width(){ return this->width; }
-int MyTexture::get_height(){ return this->height; }
-
 // move constructor
 MyTexture::MyTexture(MyTexture&& rhs) :
     texture(rhs.texture),

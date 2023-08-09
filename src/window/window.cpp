@@ -4,7 +4,6 @@
 #include <stdexcept> //
 #include <string> //
 
-#include "SDL_render.h"
 #include "texture/texture.hpp"
 #include "window.hpp" //
 
