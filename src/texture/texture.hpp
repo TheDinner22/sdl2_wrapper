@@ -50,19 +50,28 @@ private:
         this->height = loaded_surface->h;
     }
 
+    // free destroys the surface
+    // which might not be what you want if 
+    // you just moved the texture
     void free() {
         if (this->texture != NULL) {
             SDL_DestroyTexture(this->texture);
             this->texture = NULL;
             this->width = 0;
             this->height = 0;
+            this->window = NULL;
+            this->window_surface = NULL;
+            this->renderer = NULL;
         }
     }
 public:
-    // TODO uncomment these and fix?
-    // cannot make or copy this class
+    // cannot copy this class
     MyTexture(const MyTexture& other) = delete;
     MyTexture& operator=(const MyTexture& other) = delete;
+
+    // move stuff
+    MyTexture(MyTexture&& rhs);
+    MyTexture& operator=(MyTexture&& rhs);
 
     ~MyTexture();
 

@@ -43,3 +43,45 @@ void MyTexture::render( int x, int y, SDL_Rect* clip) const {
 int MyTexture::get_width(){ return this->width; }
 int MyTexture::get_height(){ return this->height; }
 
+// move constructor
+MyTexture::MyTexture(MyTexture&& rhs) :
+    texture(rhs.texture),
+    width(rhs.width),
+    height(rhs.height),
+    window(rhs.window),
+    window_surface(rhs.window_surface),
+    renderer(rhs.renderer)
+{
+    rhs.texture = NULL;
+    rhs.width = 0;
+    rhs.height = 0;
+    rhs.window = NULL;
+    rhs.window_surface = NULL;
+    rhs.renderer = NULL;
+}
+
+// i have no clue how to implement this and 
+// am operating on pure guesswork
+// the cpp reference is more confusing than the 
+// enigma codes
+// TODO implement this and test the move constructor
+MyTexture& MyTexture::operator=(MyTexture&& rhs) {
+    this->free();
+
+    this->texture = rhs.texture;
+    this->width = rhs.width;
+    this->height = rhs.height;
+    this->window = rhs.window;
+    this->window_surface = rhs.window_surface;
+    this->renderer = rhs.renderer;
+
+    rhs.texture = NULL;
+    rhs.width = 0;
+    rhs.height = 0;
+    rhs.window = NULL;
+    rhs.window_surface = NULL;
+    rhs.renderer = NULL;
+
+    return *this;
+}
+
