@@ -55,7 +55,6 @@ Window::Window(
         print_sdl_error("could not create window: ");
         throw std::runtime_error("could not create window");
     }
-    window_surface = SDL_GetWindowSurface(window);
 
     // create renderer
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
@@ -86,7 +85,6 @@ MyTexture Window::load_texture_from_file(const char* img_path) const {
         img_path,
         loaded_surface,
         this->window,
-        this->window_surface,
         this->renderer
     );
     

@@ -20,12 +20,11 @@ private:
 
     // info about the window and render from the generator
     SDL_Window* window;
-    SDL_Surface* window_surface; // TODO remove this member (we dont need it)
     SDL_Renderer* renderer;
 
     // https://stackoverflow.com/questions/28334485/do-c-private-functions-really-need-to-be-in-the-header-file
-    MyTexture(const char* img_path, SDL_Surface* loaded_surface, SDL_Window* window, SDL_Surface* window_surface, SDL_Renderer* renderer) 
-    : window(window), window_surface(window_surface), renderer(renderer)
+    MyTexture(const char* img_path, SDL_Surface* loaded_surface, SDL_Window* window, SDL_Renderer* renderer) 
+    : window(window), renderer(renderer)
     {
         // TODO add color keying later
         // color key image
@@ -59,7 +58,6 @@ private:
             this->width = 0;
             this->height = 0;
             this->window = NULL;
-            this->window_surface = NULL;
             this->renderer = NULL;
         }
     }

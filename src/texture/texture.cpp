@@ -47,14 +47,12 @@ MyTexture::MyTexture(MyTexture&& rhs) :
     height(rhs.height),
     texture(rhs.texture),
     window(rhs.window),
-    window_surface(rhs.window_surface),
     renderer(rhs.renderer)
 {
     rhs.texture = NULL;
     rhs.width = 0;
     rhs.height = 0;
     rhs.window = NULL;
-    rhs.window_surface = NULL;
     rhs.renderer = NULL;
 }
 
@@ -70,14 +68,12 @@ MyTexture& MyTexture::operator=(MyTexture&& rhs) {
     this->width = rhs.width;
     this->height = rhs.height;
     this->window = rhs.window;
-    this->window_surface = rhs.window_surface;
     this->renderer = rhs.renderer;
 
     rhs.texture = NULL;
     rhs.width = 0;
     rhs.height = 0;
     rhs.window = NULL;
-    rhs.window_surface = NULL;
     rhs.renderer = NULL;
 
     return *this;

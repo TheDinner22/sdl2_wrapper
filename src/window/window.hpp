@@ -15,8 +15,6 @@ void print_sdl_img_error(const char* msg);
 class Window {
 private:
     SDL_Window* window;
-    SDL_Surface* window_surface;
-
     SDL_Renderer* renderer;
     //
     // you are responsible for this pointer!
