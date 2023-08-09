@@ -42,6 +42,21 @@ void color_key_test (const Window& win) {
     std::cin >> b;
 }
 
+void bg_color_test (const Window& win) {
+    RBGColor bg_color = {0, 255, 255};
+    MyTexture bg = win.load_texture_from_file("images/background.png");
+
+    // here because we set bg color after render
+    win.update_screen(bg_color);
+    bg.render(0, 0);
+    win.update_screen(bg_color);
+
+    
+    // just to make the program not insta die
+    int b;
+    std::cin >> b;
+}
+
 int main() {
     const int SCREEN_WIDTH = 650;
     const int SCREEN_HEIGHT = 650;
@@ -50,4 +65,6 @@ int main() {
     alpha_mod_test(win);
 
     color_key_test(win);
+
+    bg_color_test(win);
 }
