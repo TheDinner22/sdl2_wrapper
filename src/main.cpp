@@ -29,9 +29,9 @@ void alpha_mod_test(const Window& win){
 }
 
 void color_key_test (const Window& win) {
-    RBGColor color = {0, 255, 255};
+    RBGColor color_to_make_transparent = {0, 255, 255};
     MyTexture bg = win.load_texture_from_file("images/background.png");
-    MyTexture man = win.load_texture_from_file("images/foo.png", color);
+    MyTexture man = win.load_texture_from_file("images/foo.png", color_to_make_transparent);
 
     bg.render(0, 0);
     man.render(200, 200);

@@ -93,7 +93,7 @@ void Window::update_screen(std::optional<RBGColor> bg_color) const {
     RBGColor color = bg_color.value_or(RBGColor::defaultt());
 
     // clear screen
-    SDL_SetRenderDrawColor(this->renderer, color.r, color.b, color.g, 255);
+    SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, 255);
     SDL_RenderClear(this->renderer);
 }
 

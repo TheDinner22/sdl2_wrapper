@@ -12,8 +12,8 @@ class Window;
 class RBGColor {
 public:
     uint8_t r = 0;
-    uint8_t b = 0;
     uint8_t g = 0;
+    uint8_t b = 0;
 
     // default was taken :p
     static RBGColor defaultt() {
@@ -56,7 +56,7 @@ private:
             SDL_SetColorKey(
                 loaded_surface,
                 SDL_TRUE,
-                SDL_MapRGB(loaded_surface->format, color_key_color->r, color_key_color->b, color_key_color->g)
+                SDL_MapRGB(loaded_surface->format, color_key_color->r, color_key_color->g, color_key_color->b)
             );
         }
 
