@@ -9,6 +9,8 @@ class Window;
 #include <stdexcept>
 #include <optional>
 
+#include "errors/errors.hpp"
+
 class RBGColor {
 public:
     uint8_t r = 0;
@@ -65,8 +67,7 @@ private:
         if (this->texture == NULL) {
             std::string err_msg = "unable to create texture from surface with path:";
             err_msg += img_path;
-            // TODO uncomment this
-            // print_sdl_error(err_msg.data());
+            print_sdl_error(err_msg.data());
             throw std::runtime_error(err_msg.data());
         }
 
@@ -83,8 +84,7 @@ private:
         if (loaded_surface == NULL) {
             std::string err_msg = "could not load image with path: ";
             err_msg += path;
-            // TODO uncomment this
-            // print_sdl_img_error(err_msg.data());
+            print_sdl_img_error(err_msg.data());
             throw std::runtime_error(err_msg.data());
         }
 
