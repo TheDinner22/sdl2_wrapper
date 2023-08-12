@@ -9,7 +9,12 @@
 // maybe a class that has a texture which is 
 // aware of "where it is" or something
 // move the error stuff to another file
-// sdl uses RGB
+// viewport stuff
+// animation
+// rotation
+// sprite sheets
+// sounds?
+// maybe an abstract class for things which can be drawn to the screen
 
 void alpha_mod_test(const Window& win){
     MyTexture t = win.load_texture_from_file("images/wed.png");
