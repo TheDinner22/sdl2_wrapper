@@ -52,7 +52,7 @@ Window::Window(
     }
 
     // create renderer
-    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (this->renderer == NULL) {
         print_sdl_error("could not create renderer");
     }
