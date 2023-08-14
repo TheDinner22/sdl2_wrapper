@@ -17,6 +17,8 @@ void pac_main(){
             }
         }
 
+        pacman.x ++;
+
         pacman.draw();
         win.update_screen();
     }
