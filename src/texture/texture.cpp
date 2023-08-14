@@ -65,16 +65,21 @@ MyTexture::MyTexture(MyTexture&& rhs) :
 // am operating on pure guesswork
 // the cpp reference is more confusing than the 
 // enigma codes
-/*
 MyTexture& MyTexture::operator=(MyTexture&& rhs) {
-    this->free();
+    // free dest (unless it would delete the texture we want to move)
+    const bool self_assignment = this->texture == rhs.texture;
+    if(!self_assignment){
+        this->free();
+    }
 
+    // move src to dest
     this->texture = rhs.texture;
     this->width = rhs.width;
     this->height = rhs.height;
     this->window = rhs.window;
     this->renderer = rhs.renderer;
 
+    // kill src
     rhs.texture = NULL;
     rhs.width = 0;
     rhs.height = 0;
@@ -83,5 +88,4 @@ MyTexture& MyTexture::operator=(MyTexture&& rhs) {
 
     return *this;
 }
-*/
 
