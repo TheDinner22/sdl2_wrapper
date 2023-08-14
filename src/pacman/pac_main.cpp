@@ -3,6 +3,12 @@
 #include "entity/entity.hpp"
 #include "SDL2/SDL.h"
 
+// how to fps (disable vsync)
+// how to rotate
+// how to collisions
+// add rendering of lines, rects, and circles
+// how to render fonts
+
 void pac_main(){
     Window win("pacman", 600, 600);
 
