@@ -2,10 +2,10 @@
 
 #include "texture/texture.hpp"
 
+// its just a textrue paired with an x, y coordinate pair
 class Entity {
 private:
     MyTexture texture;
-    int width, height;
 public:
     int x, y;
 
