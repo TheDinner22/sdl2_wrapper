@@ -1,5 +1,6 @@
 #include "window/window.hpp"
 #include "texture/texture.hpp"
+#include "pacman/pac_main.hpp"
 
 #include <iostream>
 
@@ -77,6 +78,10 @@ void color_mod_test (const Window& win) {
 }
 
 int main() {
+    pac_main();
+
+    return 0;
+
     const int SCREEN_WIDTH = 650;
     const int SCREEN_HEIGHT = 650;
 
