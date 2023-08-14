@@ -111,7 +111,7 @@ public:
 
     // move stuff
     MyTexture(MyTexture&& rhs);
-    MyTexture& operator=(MyTexture&& rhs) = delete;
+    MyTexture& operator=(MyTexture&& rhs);
 
     ~MyTexture();
 
