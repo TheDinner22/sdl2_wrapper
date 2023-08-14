@@ -4,7 +4,7 @@
 #include <SDL2/SDL_image.h> //
 #include <string> //
 #include <stdexcept> //
-#include <iostream>
+#include <iostream> //
 
 #include "texture/texture.hpp" //
 
