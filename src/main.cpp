@@ -15,6 +15,7 @@
 // sprite sheets
 // sounds?
 // maybe an abstract class for things which can be drawn to the screen
+// overload method impl's so u can do optional refs instead of NULL pointers
 
 void alpha_mod_test(const Window& win){
     MyTexture t = win.load_texture_from_file("images/wed.png");
