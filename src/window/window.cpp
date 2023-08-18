@@ -51,7 +51,7 @@ Window::Window(
         throw std::runtime_error("could not create window");
     }
 
-    // create renderer
+    // create renderer TODO remove SDL_RENDERER_PRESENTVSYNC when impl FPS counter
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (this->renderer == NULL) {
         print_sdl_error("could not create renderer");
