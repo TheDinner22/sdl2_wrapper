@@ -27,7 +27,7 @@ void MyTexture::set_alpha(uint8_t alpha){
     SDL_SetTextureAlphaMod(this->texture, alpha);
 }
 
-void MyTexture::render( int x, int y, SDL_Rect* clip) const {
+void MyTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) const {
     SDL_Rect render_quad = {x, y, this->width, this->height};
 
     // TODO make it so i can render to entire screen if i want
@@ -43,7 +43,7 @@ void MyTexture::render( int x, int y, SDL_Rect* clip) const {
     }
 
     // render to screen
-    SDL_RenderCopy(renderer, this->texture, clip, &render_quad);
+    SDL_RenderCopyEx(renderer, this->texture, clip, &render_quad, angle, center, flip);
 }
 
 // move constructor

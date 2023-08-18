@@ -123,6 +123,6 @@ public:
     void set_blend_mode(SDL_BlendMode blending);
     void set_alpha(uint8_t alpha);
 
-    void render(int x, int y, SDL_Rect* clip = NULL) const;
+    void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 };
 
