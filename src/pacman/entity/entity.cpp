@@ -2,17 +2,9 @@
 #include "texture/texture.hpp"
 #include "window/window.hpp"
 
-/*
-class Entity {
-private:
-    MyTexture texture;
-public:
-    int x, y;
-
-};
-*/
 Entity::Entity(const char* img_path, const Window& win, std::optional<RBGColor> color_key_color) : 
     texture(win.load_texture_from_file(img_path, color_key_color)),
+    angle(0.0),
     x(0),
     y(0)
 {}
@@ -24,6 +16,14 @@ void Entity::set_height(int height){
     this->texture.height = height;
 }
 
-void Entity::draw(){
-    this->texture.render(this->x, this->y);
+void Entity::rotate_clock_wise(double angle){
+    this->angle += angle;
+}
+
+void Entity::rotate_counter_clock_wise(double angle){
+    this->angle -= angle;
+}
+
+void Entity::draw() const {
+    this->texture.render(this->x, this->y, NULL, this->angle);
 }

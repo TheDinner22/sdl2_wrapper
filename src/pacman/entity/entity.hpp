@@ -6,6 +6,7 @@
 class Entity {
 private:
     MyTexture texture;
+    double angle;
 public:
     int x, y;
 
@@ -14,5 +15,8 @@ public:
     void set_width(int width);
     void set_height(int height);
 
-    void draw();
+    void rotate_clock_wise(double angle);
+    void rotate_counter_clock_wise(double angle);
+
+    void draw() const;
 };
