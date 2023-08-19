@@ -1,6 +1,8 @@
 #include <iostream>
+#include <vector>
 #include "window/window.hpp"
 #include "entity/entity.hpp"
+#include "pacman/maze/maze.hpp"
 #include "SDL2/SDL.h"
 
 // how to fps (disable vsync)
@@ -15,6 +17,10 @@ void pac_main(){
     Window win("pacman", 600, 600);
 
     Entity pacman("images/pacman/pacman.png", win);
+
+    Entity maze_pacman("images/pacman/pacman.png", win);
+    std::vector<Entity> ghosts;
+    Maze test_maze(std::move(maze_pacman), std::move(ghosts));
 
     bool done = false;
     while(!done) {
