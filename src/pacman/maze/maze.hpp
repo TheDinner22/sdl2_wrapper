@@ -57,3 +57,31 @@ public:
     void handle_key_press(const SDL_Keycode& sym);
 };
 
+class Cell {
+private:
+    CellState state = EMPTY;
+    int x, y, width, height;
+    Cell() : x(0), y(0), width(0), height(0) { }
+public:
+    static std::vector<Cell> make_cells(
+        int number_of_rows,
+        int number_of_cols,
+        int maze_width,
+        int maze_height)
+    {
+        const double cell_width = (double)maze_width / (double)number_of_cols;
+        const double cell_height = (double)maze_height / (double)number_of_rows;
+        const int number_of_cells = number_of_cols * number_of_rows;
+        std::vector<Cell> cells;
+        cells.reserve(number_of_cells);
+
+        // fill vectore with cells
+        // u probly need a double for loop or something
+        // rememb u r mapping the pixels on the screen to cells
+
+        return cells;
+    }
+
+    bool contains(const Entity& other) const;
+};
+
