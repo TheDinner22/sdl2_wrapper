@@ -83,3 +83,24 @@ void Maze::tick(){
     }
 }
 
+// TODO massive wip
+// does nothing to prevent collisions!
+void Maze::handle_key_press(const SDL_Keycode& sym) {
+    switch (sym) {
+        case SDLK_UP:
+            this->player_move = UP;
+            break;
+        case SDLK_DOWN:
+            this->player_move = DOWN;
+            break;
+        case SDLK_LEFT:
+            this->player_move = LEFT;
+            break;
+        case SDLK_RIGHT:
+            this->player_move = RIGHT;
+            break;
+        default:
+            break;
+    }
+}
+

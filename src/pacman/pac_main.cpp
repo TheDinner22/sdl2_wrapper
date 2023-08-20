@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include "SDL_events.h"
 #include "window/window.hpp"
 #include "entity/entity.hpp"
 #include "pacman/maze/maze.hpp"
@@ -21,14 +20,13 @@ void pac_main(){
 
     bool done = false;
     while(!done) {
-        frame += 1;
         SDL_Event e;
         while(SDL_PollEvent(&e)) {
             if(e.type == SDL_QUIT) {
                 done = true;
             }
             else if (e.type == SDL_KEYDOWN) {
-                /* TODO handle key presses here */
+                test_maze.handle_key_press(e.key.keysym.sym);
             }
         }
 

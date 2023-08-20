@@ -53,5 +53,7 @@ public:
     void draw() const;
 
     void tick();
+
+    void handle_key_press(const SDL_Keycode& sym);
 };
 
