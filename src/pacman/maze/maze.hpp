@@ -25,7 +25,10 @@ private:
     CellState cells[side_length][side_length];
 
     std::vector<Entity> ghosts;
+
     Entity player;
+    Move player_move;
+    
 
     // ()'s group & and layout becuase this is a ref to slice not slice of ref's
     void load_layout_into_cells(const int (&layout) [side_length * side_length]) {
@@ -46,4 +49,9 @@ private:
 public:
     // TODO way to setup maze?
     Maze(Entity&& player, std::vector<Entity>&& ghosts);
+
+    void draw() const;
+
+    void tick();
 };
+

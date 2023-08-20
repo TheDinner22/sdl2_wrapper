@@ -11,7 +11,7 @@ enum CellState {
 
 // TODO way to setup maze?
 Maze::Maze(Entity&& player, std::vector<Entity>&& ghosts) :
-ghosts(std::move(ghosts)), player(std::move(player))
+ghosts(std::move(ghosts)), player(std::move(player)), player_move(UP)
 {
     const int layout[side_length * side_length] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
@@ -59,5 +59,27 @@ ghosts(std::move(ghosts)), player(std::move(player))
     // how to render them
     // how to determine positions
     // move mechanics and collisions
+}
+
+void Maze::draw() const {
+    this->player.draw();
+}
+
+// TODO massive WIP
+void Maze::tick(){
+    switch (this->player_move) {
+        case UP:
+            this->player.y -= 1;
+            break;
+        case DOWN:
+            this->player.y += 1;
+            break;
+        case LEFT:
+            this->player.x -= 1;
+            break;
+        case RIGHT:
+            this->player.x += 1;
+            break;
+    }
 }
 
