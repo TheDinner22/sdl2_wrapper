@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "SDL_events.h"
 #include "window/window.hpp"
 #include "entity/entity.hpp"
 #include "pacman/maze/maze.hpp"
@@ -12,7 +13,6 @@
 // how to render fonts
 
 void pac_main(){
-    unsigned int frame = 0;
     Window win("pacman", 600, 600);
 
     Entity maze_pacman("images/pacman/pacman.png", win);
@@ -27,10 +27,12 @@ void pac_main(){
             if(e.type == SDL_QUIT) {
                 done = true;
             }
+            else if (e.type == SDL_KEYDOWN) {
+                /* TODO handle key presses here */
+            }
         }
 
         test_maze.tick();
-        //if (frame % 10 == 0) { }
 
         test_maze.draw();
         win.update_screen();
