@@ -1,5 +1,9 @@
 #include "maze.hpp"
 
+Cell::Cell(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) { }
+
+bool Cell::contains(const Entity& other) const {/*TODO*/}
+
 /*
 enum CellState {
     EMPTY,
@@ -103,4 +107,5 @@ void Maze::handle_key_press(const SDL_Keycode& sym) {
             break;
     }
 }
+
 

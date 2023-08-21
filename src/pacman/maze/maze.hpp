@@ -64,7 +64,7 @@ private:
     double x, y;
     int width, height;
 public:
-    Cell(int x = 0.0, int y = 0.0, int width = 0, int height = 0) : x(x), y(y), width(width), height(height) { }
+    Cell(int x = 0.0, int y = 0.0, int width = 0, int height = 0);
 
     template<int number_of_rows, int number_of_cols>
     static std::array<std::array<Cell, number_of_cols>, number_of_rows> make_cells(
@@ -73,7 +73,6 @@ public:
     {
         const double cell_width = (double)maze_width / (double)number_of_cols;
         const double cell_height = (double)maze_height / (double)number_of_rows;
-        const int number_of_cells = number_of_cols * number_of_rows;
         std::array<std::array<Cell, number_of_cols>, number_of_rows> cells;
 
         for (int row_i = 0; row_i < number_of_rows; row_i++) {
