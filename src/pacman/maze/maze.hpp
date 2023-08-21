@@ -3,7 +3,17 @@
 #include "pacman/entity/entity.hpp"
 #include <array>
 #include <iostream>
+#include <optional>
 #include <vector>
+
+// i want to return a row, col pair to identify an
+// index in a 2d array and refuse to use a pair or tuple
+// Ex: array[i][j]
+// i = row and j = col
+class Index2 {
+public:
+    int i, j;
+};
 
 enum CellState {
     EMPTY,
@@ -95,6 +105,10 @@ public:
     void draw() const;
 
     void tick();
+
+    // gets the row and col of the cell the player 
+    // is on
+    std::optional<Index2> players_cell() const; // TODO
 
     void handle_key_press(const SDL_Keycode& sym);
 };
