@@ -1,5 +1,9 @@
 #include "maze.hpp"
 
+std::ostream &operator<<(std::ostream &os, Cell const &cell) { 
+    return os << "(" << cell.x << ", " << cell.y << ")";
+}
+
 Cell::Cell(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) { }
 
 bool Cell::contains(const Entity& other) const {/*TODO*/}
@@ -17,6 +21,9 @@ enum CellState {
 Maze::Maze(Entity&& player, std::vector<Entity>&& ghosts) :
 ghosts(std::move(ghosts)), player(std::move(player)), player_move(UP)
 {
+    // init cells
+    this->cells = Cell::make_cells<Maze::side_length, Maze::side_length>(this->maze_width, this->maze_height);
+
     const int layout[side_length * side_length] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
@@ -49,7 +56,7 @@ ghosts(std::move(ghosts)), player(std::move(player)), player_move(UP)
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
     };
-    load_layout_into_cells(layout);
+    update_cellstates_from_layout(layout);
 
     for (int row = 0; row < side_length; row++){
         for (int col = 0; col < side_length; col++){

@@ -12,9 +12,6 @@
 // how to render fonts
 
 void pac_main(){
-    auto cells = Cell::make_cells<10, 10>(600, 600);
-    Cell::print<10, 10>(cells);
-
     Window win("pacman", 600, 600);
 
     Entity maze_pacman("images/pacman/pacman.png", win);
