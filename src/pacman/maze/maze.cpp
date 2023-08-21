@@ -6,7 +6,24 @@ std::ostream &operator<<(std::ostream &os, Cell const &cell) {
 
 Cell::Cell(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) { }
 
-bool Cell::contains(const Entity& other) const {/*TODO*/}
+bool Cell::contains(const Entity& other) const {
+    auto other_center = other.center();
+
+    const int other_x = other_center.first;
+    const int other_y = other_center.second;
+    const int end_x = this->x + this->width;
+    const int end_y = this->y + this->height;
+
+    if (other_x < this->x || other_x > end_x) {
+        return false;
+    }
+
+    if (other_y < this->y || other_y > end_y) {
+        return false;
+    }
+
+    return true;
+}
 
 /*
 enum CellState {
