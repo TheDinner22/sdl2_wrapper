@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pacman/entity/entity.hpp"
+#include <array>
 #include <iostream>
 #include <vector>
 
@@ -22,7 +23,7 @@ class Maze {
 private:
     static const int side_length = 30;
     // cells[row][col]
-    CellState cells[side_length][side_length];
+    std::array<std::array<CellState, side_length>, side_length> cells;
 
     std::vector<Entity> ghosts;
 
@@ -60,26 +61,40 @@ public:
 class Cell {
 private:
     CellState state = EMPTY;
-    int x, y, width, height;
-    Cell() : x(0), y(0), width(0), height(0) { }
+    double x, y;
+    int width, height;
 public:
-    static std::vector<Cell> make_cells(
-        int number_of_rows,
-        int number_of_cols,
+    Cell(int x = 0.0, int y = 0.0, int width = 0, int height = 0) : x(x), y(y), width(width), height(height) { }
+
+    template<int number_of_rows, int number_of_cols>
+    static std::array<std::array<Cell, number_of_cols>, number_of_rows> make_cells(
         int maze_width,
         int maze_height)
     {
         const double cell_width = (double)maze_width / (double)number_of_cols;
         const double cell_height = (double)maze_height / (double)number_of_rows;
         const int number_of_cells = number_of_cols * number_of_rows;
-        std::vector<Cell> cells;
-        cells.reserve(number_of_cells);
+        std::array<std::array<Cell, number_of_cols>, number_of_rows> cells;
 
-        // fill vectore with cells
-        // u probly need a double for loop or something
-        // rememb u r mapping the pixels on the screen to cells
+        for (int row_i = 0; row_i < number_of_rows; row_i++) {
+            const double y_pos = cell_height * double(row_i);
+            for (int col_i = 0; col_i < number_of_rows; col_i++) {
+                const double x_pos = cell_width * double(col_i);
+                cells[row_i][col_i] = Cell(x_pos, y_pos, cell_width, cell_height);
+            }
+        }
 
         return cells;
+    }
+
+    template<int number_of_rows, int number_of_cols>
+    static void print(const std::array<std::array<Cell, number_of_cols>, number_of_rows>& cells) {
+        for (std::array<Cell, number_of_cols> row : cells) {
+            for (Cell x : row) {
+                std::cout << "(" << x.x << ", " << x.y << ") ";
+            }
+            std::cout << std::endl;
+        }
     }
 
     bool contains(const Entity& other) const;
