@@ -9,16 +9,14 @@ Cell::Cell(int x, int y, int width, int height) : x(x), y(y), width(width), heig
 bool Cell::contains(const Entity& other) const {
     auto other_center = other.center();
 
-    const int other_x = other_center.first;
-    const int other_y = other_center.second;
     const int end_x = this->x + this->width;
     const int end_y = this->y + this->height;
 
-    if (other_x < this->x || other_x > end_x) {
+    if (other_center.x < this->x || other_center.x > end_x) {
         return false;
     }
 
-    if (other_y < this->y || other_y > end_y) {
+    if (other_center.y < this->y || other_center.y > end_y) {
         return false;
     }
 

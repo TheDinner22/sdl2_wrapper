@@ -1,3 +1,5 @@
+#include <SDL2/SDL.h>
+
 #include "entity.hpp"
 #include "texture/texture.hpp"
 #include "window/window.hpp"
@@ -28,9 +30,12 @@ void Entity::draw() const {
     this->texture.render(this->x, this->y, NULL, this->angle);
 }
 
-std::pair<int, int> Entity::center() const {
+SDL_Point Entity::center() const {
     const int x = this->x + this->texture.width / 2;
     const int y = this->y + this->texture.height / 2;
-    return std::pair(x, y);
+    auto center = SDL_Point();
+    center.x = x;
+    center.y = y;
+    return center;
 }
 
