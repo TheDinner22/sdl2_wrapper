@@ -1,6 +1,7 @@
 #pragma once
 
 #include "texture/texture.hpp"
+#include <utility>
 
 // its just a textrue paired with an x, y coordinate pair
 class Entity {
@@ -17,6 +18,8 @@ public:
 
     void rotate_clock_wise(double angle);
     void rotate_counter_clock_wise(double angle);
+
+    std::pair<int, int> center() const;
 
     void draw() const;
 };

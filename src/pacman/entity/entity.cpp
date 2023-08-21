@@ -27,3 +27,10 @@ void Entity::rotate_counter_clock_wise(double angle){
 void Entity::draw() const {
     this->texture.render(this->x, this->y, NULL, this->angle);
 }
+
+std::pair<int, int> Entity::center() const {
+    const int x = this->x + this->texture.width / 2;
+    const int y = this->y + this->texture.height / 2;
+    return std::pair(x, y);
+}
+
