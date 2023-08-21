@@ -6,21 +6,23 @@ std::ostream &operator<<(std::ostream &os, Cell const &cell) {
 
 Cell::Cell(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) { }
 
-bool Cell::contains(const Entity& other) const {
+ContainsResult Cell::contains(const Entity& other) const {
     auto other_center = other.center();
 
     const int end_x = this->x + this->width;
     const int end_y = this->y + this->height;
 
-    if (other_center.x < this->x || other_center.x > end_x) {
-        return false;
+    ContainsResult result = {true, true};
+
+    if (other_center.x <= this->x || other_center.x >= end_x) {
+        result.x_match = false;
     }
 
-    if (other_center.y < this->y || other_center.y > end_y) {
-        return false;
+    if (other_center.y <= this->y || other_center.y >= end_y) {
+        result.y_match = false;
     }
 
-    return true;
+    return result;
 }
 
 /*
@@ -128,6 +130,18 @@ void Maze::handle_key_press(const SDL_Keycode& sym) {
         default:
             break;
     }
+}
+
+// returns none if they are off screen for some reason
+std::optional<Index2> Maze::players_cell() const {
+    // find the col that the player is in
+    int player_x = this->player.x;
+    auto top_row = this->cells[0];
+    int player_col;
+    for (Cell cell : top_row) {
+        /*WIP while i update cells api*/
+    }
+
 }
 
 

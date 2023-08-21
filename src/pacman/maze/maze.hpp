@@ -15,6 +15,16 @@ public:
     int i, j;
 };
 
+class ContainsResult {
+public:
+    // ContainsResult(bool x_and_y_match) : x_match(x_and_y_match), y_match(x_and_y_match) {}
+
+    bool x_match = false;
+    bool y_match = false;
+
+    bool contained() const { return x_match == true && y_match == true; }
+};
+
 enum CellState {
     EMPTY,
     WALL,
@@ -32,6 +42,9 @@ public:
     friend std::ostream &operator<<(std::ostream &os, Cell const &cell);
 
     Cell(int x = 0.0, int y = 0.0, int width = 0, int height = 0);
+
+    const double& get_x() const { return this->x; }
+    const double& get_y() const { return this->y; }
 
     template<int number_of_rows, int number_of_cols>
     static std::array<std::array<Cell, number_of_cols>, number_of_rows> make_cells(
@@ -63,7 +76,7 @@ public:
         }
     }
 
-    bool contains(const Entity& other) const;
+    ContainsResult contains(const Entity& other) const;
 };
 
 enum Move {
