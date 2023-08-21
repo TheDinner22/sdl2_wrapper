@@ -1,4 +1,5 @@
 #include "maze.hpp"
+#include <optional>
 
 std::ostream &operator<<(std::ostream &os, Cell const &cell) { 
     return os << "(" << cell.x << ", " << cell.y << ")";
@@ -135,13 +136,23 @@ void Maze::handle_key_press(const SDL_Keycode& sym) {
 // returns none if they are off screen for some reason
 std::optional<Index2> Maze::players_cell() const {
     // find the col that the player is in
-    int player_x = this->player.x;
     auto top_row = this->cells[0];
-    int player_col;
-    for (Cell cell : top_row) {
-        /*WIP while i update cells api*/
+    std::optional<int> player_col = std::nullopt;
+    for (int cell_i = 0; cell_i < top_row.size(); cell_i++) {
+        auto cell = top_row[cell_i];
+        auto contains_result = cell.contains(this->player);
+        if (contains_result.x_match) {
+            player_col.emplace(cell_i);
+        }
     }
 
+    // if the option has a value, the players col has been found
+    // if it is nullopt, the player is not on the board, return early
+    if (!player_col.has_value()) {
+        return std::nullopt;
+    }
+
+    // TODO next find the players row or something idk
 }
 
 
